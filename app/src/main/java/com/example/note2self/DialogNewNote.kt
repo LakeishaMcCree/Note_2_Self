@@ -41,14 +41,22 @@ class DialogNewNote : DialogFragment() {
             dismiss()
         }
 
-//        btnOK.setOnClickListener {
-//            //create a new note
-//            val newNote = Note()
+        btnOK.setOnClickListener {
+            //create a new note
+            val newNote = Note()
 
 
 
             //set its properties to match the user's entries on the form
-            //newNote.title = editTitle.text.toString()
+            newNote.title = editTitle.text.toString()
+
+            newNote.description = editDescription.text.toString()
+
+            newNote.idea = checkBoxIdea.isChecked
+            newNote.todo = checkBoxToDo.isChecked
+            newNote.important = checkBoxImportant.isChecked
+
+
         }
     }
 }
