@@ -56,7 +56,16 @@ class DialogNewNote : DialogFragment() {
             newNote.todo = checkBoxToDo.isChecked
             newNote.important = checkBoxImportant.isChecked
 
+            //get a reference to MainActivity
+            val callingActivity = activity as MainActivity
 
+            //pass a newNote to MainActivity
+            callingActivity!!.createNewNote(newNote)
+
+            //quit the dialog
+            dismiss()
         }
+
+        return builder.create()
     }
 }
