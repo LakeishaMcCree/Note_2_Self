@@ -3,6 +3,7 @@ package com.example.note2self
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
@@ -42,6 +43,16 @@ class DialogShowNote : DialogFragment (){
         if (!note!!.idea){
             txtIdea.visibility = View.GONE
         }
+
+        val btnOK = dialogView.findById(R.id.btnOK) as Button
+
+        builder.setView(dialogView).setMessage("Your Note")
+
+        btnOK.setOnClickListener({
+            dismiss()
+        })
+
+        return builder.create()
     }
 
     //Receive a note from the MainActivity class
