@@ -9,14 +9,22 @@ import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
 
+    //Temporary code
+    private var tempNote = Note()
+
+    fun createNewNote(n: Note) {
+        //Temporary code
+        tempNote = n
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val dialog = DialogNewNote()
+            dialog.show(supportFragmentManager, "")
         }
     }
 

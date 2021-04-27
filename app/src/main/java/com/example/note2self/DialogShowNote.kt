@@ -44,7 +44,7 @@ class DialogShowNote : DialogFragment (){
             txtIdea.visibility = View.GONE
         }
 
-        val btnOK = dialogView.findById(R.id.btnOK) as Button
+        val btnOK = dialogView.findViewById(R.id.btnOK) as Button
 
         builder.setView(dialogView).setMessage("Your Note")
 
