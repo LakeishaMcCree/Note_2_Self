@@ -2,6 +2,8 @@ package com.example.note2self
 
 import android.app.Dialog
 import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 class DialogShowNote : DialogFragment (){
@@ -14,6 +16,19 @@ class DialogShowNote : DialogFragment (){
         val inflater = activity!!.layoutInflater
 
         val dialogView = inflater.inflate(R.layout.dialog_show_note, null)
+
+        val txtTitle = dialogView.findViewById(R.id.txtTitle) as TextView
+
+        val txtDescription = dialogView.findViewById(R.id.txtDescription) as TextView
+
+        txtTitle.text = note!!.title
+        txtDescription.text = note!!.description
+
+        val txtImportant = dialogView.findViewById(R.id.textViewImportant) as TextView
+
+        val txtTodo = dialogView.findViewById(R.id.textViewTodo) as TextView
+
+        val txtIdea = dialogView.findViewById(R.id.textViewIdea) as TextView
     }
 
     //Receive a note from the MainActivity class
