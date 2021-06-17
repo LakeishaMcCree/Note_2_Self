@@ -6,21 +6,46 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    //Temporary code
-    private var tempNote = Note()
+    private val noteList = ArrayList<Note>()
+    private val recyclerView: RecyclerView? = null
+    private val adapter: NoteAdapter? = null
 
-    fun createNewNote(n: Note) {
-        //Temporary code
-        tempNote = n
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        fab.setOnClickListener { view ->
+            val dialog = DialogNewNote()
+            dialog.show(supportFragmentManager, "")
+        }
+
+        recyclerView =
+            findViewById<View>(R.id.recyclerView) as RecyclerView
+
+        adapter = NoteAdapter(this, noteList)
+            val layoutManager = LinearLayoutManager(applicationContext)
+
+        recyclerView!!.layoutManager = layoutManager
+        recyclerView!!.itemAnimator = DefaultItemAnimator()
+
+        //Add a dividing line between the items in the list
+        recyclerView!!.addItemDecoration(
+            DividerItemDecoration(this,
+                LinearLayoutManager.VERTICAL))
+
+        //set the adapter
+        recyclerView!!.adapter = adapter
+
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             val dialog = DialogNewNote()
