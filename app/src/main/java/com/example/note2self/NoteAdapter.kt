@@ -57,12 +57,25 @@ class NoteAdapter(
             RecyclerView.ViewHolder(view),
             View.onClickListener {
 
-        init {
+        internal var title =
+                    view.findViewById<View>(
+                                R.id.textViewTitle) as TextView
 
+        internal var description =
+                    view.findViewById<View>(
+                                R.id.textViewDescription) as TextView
+
+        internal var status =
+                    view.findViewById<View>(
+                                R.id.textViewStatus) as TextView
+
+        init {
+            view.isClickable = true
+            view.setOnClickListener(this)
         }
 
         override fun onClick(view: View) {
-
+            mainActivity.showNote(adapterPosition)
         }
     }
 
