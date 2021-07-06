@@ -1,22 +1,24 @@
 package com.example.note2self
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+
+
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+
     private val noteList = ArrayList<Note>()
-    private val recyclerView: RecyclerView? = null
-    private val adapter: NoteAdapter? = null
+    private var recyclerView: RecyclerView? = null
+    private var adapter: NoteAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        fab.setOnClickListener { view ->
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
             val dialog = DialogNewNote()
             dialog.show(supportFragmentManager, "")
         }
@@ -33,25 +36,39 @@ class MainActivity : AppCompatActivity() {
             findViewById<View>(R.id.recyclerView) as RecyclerView
 
         adapter = NoteAdapter(this, noteList)
-            val layoutManager = LinearLayoutManager(applicationContext)
+        val layoutManager = LinearLayoutManager(applicationContext)
 
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator()
 
         //Add a dividing line between the items in the list
         recyclerView!!.addItemDecoration(
-            DividerItemDecoration(this,
-                LinearLayoutManager.VERTICAL))
+            DividerItemDecoration(
+                this,
+                LinearLayoutManager.VERTICAL
+            )
+        )
 
         //set the adapter
         recyclerView!!.adapter = adapter
-
-
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            val dialog = DialogNewNote()
-            dialog.show(supportFragmentManager, "")
-        }
     }
+
+        //findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+            //val dialog = DialogNewNote()
+            //dialog.show(supportFragmentManager, "")
+        //}
+
+    fun createNewNote(n: Note) {
+        noteList.add(n)
+        adapter!!.notifyDataSetChanged()
+    }
+
+    fun showNote(noteToShow: Int) {
+        val dialog = DialogShowNote()
+        dialog.sendNoteSelected(noteList[noteToShow])
+        dialog.show(supportFragmentManager, "")
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

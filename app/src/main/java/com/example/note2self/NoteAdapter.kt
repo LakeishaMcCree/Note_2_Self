@@ -24,7 +24,7 @@ class NoteAdapter(
     override fun onBindViewHolder(
         holder: NoteAdapter.ListItemHolder, position: Int) {
 
-        val note = noteList(position)
+        val note = noteList!![position]
         holder.title.text = note.title
 
         // Show the first 15 characters of the actual note
@@ -55,7 +55,7 @@ class NoteAdapter(
 
     inner class ListItemHolder(view: View)  :
             RecyclerView.ViewHolder(view),
-            View.onClickListener {
+            View.OnClickListener {
 
         internal var title =
                     view.findViewById<View>(
