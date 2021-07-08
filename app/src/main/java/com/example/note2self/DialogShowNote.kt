@@ -13,9 +13,9 @@ class DialogShowNote : DialogFragment (){
     private var note: Note? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         //All the other code goes here
-        val builder = AlertDialog.Builder(this.activity!!)
+        val builder = AlertDialog.Builder(this.requireActivity())
 
-        val inflater = activity!!.layoutInflater
+        val inflater = requireActivity().layoutInflater
 
         val dialogView = inflater.inflate(R.layout.dialog_show_note, null)
 
@@ -48,9 +48,9 @@ class DialogShowNote : DialogFragment (){
 
         builder.setView(dialogView).setMessage("Your Note")
 
-        btnOK.setOnClickListener({
+        btnOK.setOnClickListener {
             dismiss()
-        })
+        }
 
         return builder.create()
     }

@@ -18,8 +18,20 @@ class NoteAdapter(
 
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.listitem, parent, false)
+
         return ListItemHolder(itemView)
     }
+
+
+    override fun getItemCount(): Int {
+        //supplies the current number of items in List
+        //if (noteList != null) {
+        return noteList.size
+        // }
+        //error
+        //return -1
+    }
+
 
     override fun onBindViewHolder(
         holder: NoteAdapter.ListItemHolder, position: Int) {
@@ -44,14 +56,7 @@ class NoteAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        //supplies the current number of items in List
-        if (noteList != null) {
-            return noteList.size
-        }
-        //error
-        return -1
-    }
+
 
     inner class ListItemHolder(view: View)  :
             RecyclerView.ViewHolder(view),

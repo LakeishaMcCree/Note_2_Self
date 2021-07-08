@@ -14,9 +14,9 @@ class DialogNewNote : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?) : Dialog {
 
         //all the rest of the code goes here
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
 
-        val inflater = activity!!.layoutInflater
+        val inflater = requireActivity().layoutInflater
 
         val dialogView = inflater.inflate(R.layout.dialog_new_note, null)
 
